@@ -25,10 +25,19 @@ fn test_func() {
     println!("{:?}", empty_tuple);
 
     let mul = {
-        // NOTE 最后一个非赋值语句作为函数体表达式的值，函数体表达式不等同于函数体不能使用return结束后续语句
         2 * 3
+        // NOTE 最后一个非赋值语句作为局部代码块的值，局部代码块不等同于函数体, 不能使用return结束局部代码块
+        // NOTE 如果使用了,则结束的是其所在函数的执行.
+        // return;
     };
     println!("{mul}");
+
+
+    let sub = { // ! 类型
+        // return;
+    };
+    println!("{:?}", sub);
+
 
     fn show(i: i32) {
         if i > 3 {

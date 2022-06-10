@@ -134,7 +134,7 @@ fn test_for(){
     }
 
 
-    // loob 表达式
+    // NOTE loob 表达式属于值表达式
     let s = ['R', 'U', 'N', 'O', 'O', 'B'];
     let mut i = 0;
     let location = loop {
