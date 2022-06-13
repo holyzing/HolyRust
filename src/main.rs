@@ -9,6 +9,11 @@ mod test_enum;
 
 mod test_mod;
 
+mod advance_mods;
+mod test_error;
+mod test_generic_trait;
+mod test_lifecycle;
+
 /**
  * 区块链
  * Ethereum

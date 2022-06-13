@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 /*
  * 箱（Crate）
  *      "箱"是二进制程序文件或者库文件，存在于"包"中。
@@ -18,35 +20,58 @@
  *      这些先进的语言的组织单位可以层层包含，就像文件系统的目录结构一样。Rust 中的组织单位是模块（Module）。
  */
 
-mod nation {                    // 国家
+pub mod nation {                    // 国家
     pub mod government {        // 政府
         pub fn govern() {       // 行政
+            println!("govern");
             say();
             self::say()
         }
-        fn say(){}
+        fn say(){
+            println!("say");
+        }
     }
     mod congress {              // 议会
         pub fn legislate() {    // 立法
-
+            println!("legislate");
         }
     }
     mod court {                 // 法院
-        fn judicial() {         // 司法
+        pub fn judicial() {         // 司法
+            println!("judicial");
             super::congress::legislate();
         }
     }
-    fn useNation() {
+    pub fn use_nation() {
+        println!("use_nation");
+        self::government::govern();
+    }
 
+    pub use court::judicial;
+}
+
+pub struct Breakfast {
+    pub toast: String,
+    seasonal_fruit: String,
+}
+
+impl Breakfast {
+    pub fn summer(toast: &str) -> Breakfast {
+        Breakfast {
+            toast: String::from(toast),
+            seasonal_fruit: String::from("peaches"),
+        }
     }
 }
 
-// NOTE 绝对路径从 crate 关键字开始描述。相对路径从 self 或 super 关键字或一个标识符开始描述
-#[test]
-fn test_mod() {
-    crate::test_mod::test_mod::nation::government::govern();
-    self::nation::government::govern();
-    super::test_mod::nation::government::govern();
-    nation::government::govern();
+pub enum Person {
+    // unnecessary visibility qualifier, `pub` not permitted here because it's implied
+    King {
+        name: String
+    },
+    Quene
+}
 
+pub fn govern() {
+    println!("outer govern")
 }
