@@ -1,11 +1,13 @@
 mod test_base;
 mod test_collections;
 mod test_func;
-mod test_manage_memory;
+mod test_ownership;
 
 mod test_struct;
 mod test_pointer;
 mod test_enum;
+
+mod test_mod;
 
 /**
  * 区块链
