@@ -11,7 +11,8 @@ mod test_mod;
 
 mod advance_mods;
 mod test_error;
-mod test_generic_trait;
+mod test_generic;
+mod test_trait;
 mod test_lifecycle;
 
 /**
