@@ -32,12 +32,10 @@ fn test_func() {
     };
     println!("{mul}");
 
-
     let sub = { // ! 类型
-        // return;
+         // return;
     };
     println!("{:?}", sub);
-
 
     fn show(i: i32) {
         if i > 3 {

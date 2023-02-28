@@ -20,24 +20,31 @@
  *      这些先进的语言的组织单位可以层层包含，就像文件系统的目录结构一样。Rust 中的组织单位是模块（Module）。
  */
 
-pub mod nation {                    // 国家
-    pub mod government {        // 政府
-        pub fn govern() {       // 行政
+pub mod nation {
+    // 国家
+    pub mod government {
+        // 政府
+        pub fn govern() {
+            // 行政
             println!("govern");
             say();
             self::say()
         }
-        fn say(){
+        fn say() {
             println!("say");
         }
     }
-    mod congress {              // 议会
-        pub fn legislate() {    // 立法
+    mod congress {
+        // 议会
+        pub fn legislate() {
+            // 立法
             println!("legislate");
         }
     }
-    mod court {                 // 法院
-        pub fn judicial() {         // 司法
+    mod court {
+        // 法院
+        pub fn judicial() {
+            // 司法
             println!("judicial");
             super::congress::legislate();
         }
@@ -66,10 +73,8 @@ impl Breakfast {
 
 pub enum Person {
     // unnecessary visibility qualifier, `pub` not permitted here because it's implied
-    King {
-        name: String
-    },
-    Quene
+    King { name: String },
+    Quene,
 }
 
 pub fn govern() {

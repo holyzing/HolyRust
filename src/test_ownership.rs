@@ -26,26 +26,25 @@ fn test_str_memory() {
     let s2 = s1;
     println!("{s2}");
 
-
     // NOTE 发生了值移动,也就是堆中的内容只能被一个变量所指向
     // println!("{s1}");
     /*
-    borrow of moved value: `s1`
-    value borrowed here after moverustcE0382
-    macros.rs(103, 28): Error originated from macro call here
-    test_manage_memory.rs(20, 6): Error originated from macro call here
-    test_manage_memory.rs(17, 15): value moved here
-    test_manage_memory.rs(15, 10): move occurs because `s1` has type `String`, which does not implement the `Copy` trait
-   */
+     borrow of moved value: `s1`
+     value borrowed here after moverustcE0382
+     macros.rs(103, 28): Error originated from macro call here
+     test_manage_memory.rs(20, 6): Error originated from macro call here
+     test_manage_memory.rs(17, 15): value moved here
+     test_manage_memory.rs(15, 10): move occurs because `s1` has type `String`, which does not implement the `Copy` trait
+    */
 
-   /*
-   Rust会尽可能地降低程序的运行成本，所以默认情况下，长度较大的数据存放在堆中，且采用引用移动的方式进行数据交互。
-   但如果需要将数据单纯的复制一份以供他用，可以使用数据的第二种交互方式——克隆。
-   */
+    /*
+    Rust会尽可能地降低程序的运行成本，所以默认情况下，长度较大的数据存放在堆中，且采用引用移动的方式进行数据交互。
+    但如果需要将数据单纯的复制一份以供他用，可以使用数据的第二种交互方式——克隆。
+    */
 
-   // NOTE 值克隆
-   let s3 = s2.clone();
-   println!("{s3}");
+    // NOTE 值克隆
+    let s3 = s2.clone();
+    println!("{s3}");
 }
 
 #[test]
@@ -67,7 +66,7 @@ fn test_reference() {
     let s2 = &s1;
     println!("房东 s1:{s1}, 租客 s2:{s2}");
 
-    fn borrow(str: &String) -> usize{
+    fn borrow(str: &String) -> usize {
         println!("租客 str:{str}");
         str.len()
     }
@@ -133,7 +132,6 @@ fn test_reference() {
     // NOTE 由于发生数据访问碰撞的必要条件之一是数据被至少一个使用者写且同时被至少一个其他使用者读或写，
     // NOTE 所以在一个值被可变引用时不允许再次被任何引用。
 
-
     // NOTE 悬空指针 (非空指针)
     // NOTE golang 和 rust 都在弱化指针,但又没像java和python一样完全弱化
     // missing lifetime specifier
@@ -160,7 +158,4 @@ fn test_reference() {
      * 就会发生所有权的移动（Move）或借用（Borrow）。
      * 赋值给另一个变量也就自动放弃了所有权。从根本上杜绝了并发情景下的数据共享冲突。
      */
-
 }
-
-

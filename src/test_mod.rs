@@ -18,7 +18,6 @@
  *      这些先进的语言的组织单位可以层层包含，就像文件系统的目录结构一样。Rust 中的组织单位是模块（Module）。
  */
 
-
 // NOTE 绝对路径从 crate 关键字开始描述。相对路径从 self 或 super 关键字或一个标识符开始描述
 // NOTE 非根目录下的文件夹内必须包含 mod.rs 文件, 该文件中必须 mod 引入相对于它的一级 mod
 // NOTE 每一个源文件就是一个mod, main,必须声明所有的一级mod,以便于层层引入. 所谓 "难以发现的模块"
@@ -56,10 +55,10 @@ fn test_mod() {
 
     // NOTE 枚举类的枚举项以及枚举项内含的字段，显然不能定义它们的访问权限,它们的访问权限只和枚举类保持一致
     let person = crate::advance_mods::test_mod::Person::King {
-        name: String::from("Blue")
+        name: String::from("Blue"),
     };
     match person {
-        crate::advance_mods::test_mod::Person::King {name} => {
+        crate::advance_mods::test_mod::Person::King { name } => {
             println!("{}", name);
         }
         _ => {}
@@ -83,7 +82,6 @@ fn test_mod() {
 
     use std::f64::consts::PI;
     println!("{}", (PI / 2.0).sin());
-
 }
 
 #[allow(dead_code)]

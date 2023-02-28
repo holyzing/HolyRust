@@ -1,4 +1,3 @@
-
 #[test]
 fn test_tuple() {
     let tup = ("holy", 1.7, 72);
@@ -8,8 +7,6 @@ fn test_tuple() {
 
     // NOTE tuple 不能 切片
     println!("{}, {}", tup.1, tup.2)
-
-
 }
 
 #[test]
@@ -45,7 +42,6 @@ fn test_array() {
 
     let a = &a[..2];
     println!("{:?}", a);
-
 }
 
 #[test]
@@ -97,15 +93,15 @@ fn test_slice() {
     println!("{s}, {s1}, {s2}");
 
     /*
-     * str: Rust 核心语言类型, String 或者 str 的切片后的类型就是 str, 字面量的字符串的所有者类型是 &str
-     * String: Rust 标准公共库提供的一种数据类型，它的功能更完善——它支持字符串的追加、清空等实用的操作。
-     *
-     * String 和 str 除了同样拥有一个字符开始位置属性和一个字符串长度属性以外还有一个容量（capacity）属性
-     *
-       ??? 切片后的字符串来源于母字符串,与母字符串共享地址,所以必须通过引用方式进行访问,而不是通过值拷贝
-     */
+    * str: Rust 核心语言类型, String 或者 str 的切片后的类型就是 str, 字面量的字符串的所有者类型是 &str
+    * String: Rust 标准公共库提供的一种数据类型，它的功能更完善——它支持字符串的追加、清空等实用的操作。
+    *
+    * String 和 str 除了同样拥有一个字符开始位置属性和一个字符串长度属性以外还有一个容量（capacity）属性
+    *
+      ??? 切片后的字符串来源于母字符串,与母字符串共享地址,所以必须通过引用方式进行访问,而不是通过值拷贝
+    */
 
-     // str to String
+    // str to String
     let s1 = String::from("hello");
     // String to str
     let s2 = &s1[..];

@@ -7,34 +7,40 @@
  */
 #[test]
 fn test_struct() {
-    #[derive(Debug)]  // 不能全局导入,并全局应用
+    #[derive(Debug)] // 不能全局导入,并全局应用
     struct Site {
         domain: String,
         name: String,
         nation: String,
         found: u32,
-        ignore: bool
+        ignore: bool,
     }
 
     let domain = String::from("A");
     let name = String::from("a");
 
     let site = Site {
-        domain,  // 等同于 domain : domain,
-        name,    // 等同于 name : name,
+        domain, // 等同于 domain : domain,
+        name,   // 等同于 name : name,
         nation: String::from("China"),
         found: 2013,
         // missing field `ignore` in initializer of `Site`
-        ignore: true
+        ignore: true,
     };
 
-    println!("{}-{}-{}-{}", site.domain, site.name, site.nation, site.found);
+    println!(
+        "{}-{}-{}-{}",
+        site.domain, site.name, site.nation, site.found
+    );
     let site = Site {
         domain: String::from("B"),
         name: String::from("b"),
         ..site
     };
-    println!("{}-{}-{}-{}-{}", site.domain, site.name, site.nation, site.found, site.ignore);
+    println!(
+        "{}-{}-{}-{}-{}",
+        site.domain, site.name, site.nation, site.found, site.ignore
+    );
 
     let site = Site {
         ..site // 最后一行
@@ -96,8 +102,14 @@ fn test_struct() {
         }
     }
 
-    let rect1 = Rectangle { width: 30, height: 50 };
-    let rect2 = Rectangle { width: 40, height: 20 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 40,
+        height: 20,
+    };
     println!("{}, {}", rect1.area(), rect1.wider(&rect2));
 
     let rect = Rectangle::create(30, 50);
@@ -107,9 +119,8 @@ fn test_struct() {
     // 单元结构体: 结构体可以只作为一种象征而无需任何成员：
     #[derive(Debug)]
     struct UnitStruct;
-    let empty_struct = UnitStruct{};
+    let empty_struct = UnitStruct {};
     println!("{:?}", empty_struct)
-
 }
 
 /**
@@ -118,5 +129,4 @@ fn test_struct() {
 * 但这不意味着结构体中不定义引用型字段，这需要通过"生命周期"机制来实现。
 */
 #[test]
-fn test_struct_ownership() {
-}
+fn test_struct_ownership() {}

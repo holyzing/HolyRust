@@ -2,7 +2,8 @@
 fn test_enum() {
     #[derive(Debug)]
     enum Book {
-        Papery, Electronic
+        Papery,
+        Electronic,
     }
 
     // expected value, found enum `Book`, you might have meant to use one of the enum's variants
@@ -18,14 +19,16 @@ fn test_enum() {
         Papery(u32),
         Electronic(String),
     }
-    println!("{:#?}, {:#?}", Book2::Papery(1001), Book2::Electronic(String::from("url://...")));
-
-
+    println!(
+        "{:#?}, {:#?}",
+        Book2::Papery(1001),
+        Book2::Electronic(String::from("url://..."))
+    );
 }
 
 #[test]
 fn test_match() {
-       /* NOTE match
+    /* NOTE match
      * 枚举的目的是对某一类事物的分类，分类的目的是为了对不同的情况进行描述。
      * 基于这个原理，往往枚举类最终都会被分支结构处理（许多语言中的 switch ）。
      * switch 语法很经典，但在 Rust 中并不支持，很多语言摒弃 switch 的原因都是因为
@@ -34,14 +37,17 @@ fn test_match() {
      * Scala中的模式匹配
      */
 
-     #[derive(Debug)]
+    #[derive(Debug)]
     enum Book3 {
-        Papery { index: u32, name: String },  // 具有带有名称的属性的一类,但不能像访问结构体属性一样访问
-        Electronic (String, u8),              // 具有元组属性的一类
-        Music                                 // 无属性的一类
+        Papery { index: u32, name: String }, // 具有带有名称的属性的一类,但不能像访问结构体属性一样访问
+        Electronic(String, u8),              // 具有元组属性的一类
+        Music,                               // 无属性的一类
     }
 
-    let book = Book3::Papery{index: 1001, name: String::from("测试")};
+    let book = Book3::Papery {
+        index: 1001,
+        name: String::from("测试"),
+    };
     println!(
         "{:#?}, {:#?}, {:#?}",
         Book3::Music,
@@ -49,25 +55,24 @@ fn test_match() {
         book
     );
 
-     // NOTE 枚举类的模式匹配必须穷举完
-     let r = match book {
+    // NOTE 枚举类的模式匹配必须穷举完
+    let r = match book {
         Book3::Papery { index, name } => {
             println!("Papery book {name}-{}", index);
             true
-        },
+        }
         // NOTE Named Tuple, 带元组熟悉一类在match时,也必须指定名称
-        Book3::Electronic (name, len) => {
+        Book3::Electronic(name, len) => {
             println!("E-book {}-{}", name, len);
             true
-        },
+        }
         Book3::Music => {
             println!("{:?}", Book3::Music);
             true
-        }
-        // unreachable pattern
-        // _ => {
-        //     false
-        // }
+        } // unreachable pattern
+          // _ => {
+          //     false
+          // }
     };
     println!("{r}");
 
@@ -80,9 +85,8 @@ fn test_match() {
         // non-exhaustive patterns: `&_`, not covered the matched value is of type `&str`
         _ => {
             println!("Empty")
-        },
+        }
     }
-
 }
 
 #[test]
@@ -104,7 +108,7 @@ fn test_option() {
     match opt {
         Option::Some(something) => {
             println!("{}", something);
-        },
+        }
         Option::None => {
             println!("opt is nothing");
         }
@@ -114,7 +118,7 @@ fn test_option() {
     match opt {
         Option::Some(something) => {
             println!("{}", something);
-        },
+        }
         Option::None => {
             println!("opt is nothing");
         }
@@ -126,19 +130,19 @@ fn test_option() {
     let t = Some(64);
     match t {
         Some(64) => println!("Yes"),
-        _ => println!("No")
+        _ => println!("No"),
     }
     let t: Option<i32> = None;
     match t {
         Some(64) => println!("Yes"),
-        _ => println!("No")
+        _ => println!("No"),
     }
 
     // if let 语法可以认为是只区分两种情况的 match 语句的"语法糖", 可以在之后添加一个 else 块来处理例外情况。
     #[derive(Debug)]
     enum Book {
         Papery(u32),
-        Electronic(String)
+        Electronic(String),
     }
     let book = Book::Electronic(String::from("url"));
     if let Book::Papery(index) = book {

@@ -45,13 +45,15 @@ fn test_result() {
     println!("{}", f2.metadata().is_err())
 }
 
-
 #[test]
 fn test_err_pass() {
     // NOTE 复习 Goalng 的 recover
     fn f(i: i32) -> Result<i32, bool> {
-        if i >= 0 { Ok(i) }
-        else { Err(false) }
+        if i >= 0 {
+            Ok(i)
+        } else {
+            Err(false)
+        }
     }
     let r = f(10000);
 
@@ -78,9 +80,9 @@ fn test_err_pass() {
     }
 
     /*
-       NOTE ? 符的实际作用是将 Result 类非异常的值直接取出，如果有异常就将异常 Result 返回出去。
-     * 所以，? 符仅用于返回值类型为 Result<T, E> 的函数，其中 E 类型必须和 ? 所处理的 Result 的 E 类型一致。
-     */
+      NOTE ? 符的实际作用是将 Result 类非异常的值直接取出，如果有异常就将异常 Result 返回出去。
+    * 所以，? 符仅用于返回值类型为 Result<T, E> 的函数，其中 E 类型必须和 ? 所处理的 Result 的 E 类型一致。
+    */
 
     let r = g(10000);
     if let Ok(v) = r {
@@ -89,7 +91,6 @@ fn test_err_pass() {
         println!("Err");
     }
 }
-
 
 #[test]
 fn test_kind() {
@@ -101,9 +102,9 @@ fn test_kind() {
      * 但是这样需要判断 Result 的 Err 类型，获取 Err 类型的函数是 kind()。
      */
 
+    use std::fs::File;
     use std::io;
     use std::io::Read;
-    use std::fs::File;
     fn read_text_from_file(path: &str) -> Result<String, io::Error> {
         let mut f = File::open(path)?;
         let mut s = String::new();
@@ -114,15 +115,13 @@ fn test_kind() {
     let str_file = read_text_from_file("hello.txt");
     match str_file {
         Ok(s) => println!("{}", s),
-        Err(e) => {
-            match e.kind() {
-                io::ErrorKind::NotFound => {
-                    println!("No such file");
-                },
-                _ => {
-                    println!("Cannot read the file");
-                }
+        Err(e) => match e.kind() {
+            io::ErrorKind::NotFound => {
+                println!("No such file");
             }
-        }
+            _ => {
+                println!("Cannot read the file");
+            }
+        },
     }
 }

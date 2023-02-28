@@ -101,7 +101,7 @@ fn test_if() {
 }
 
 #[test]
-fn test_for(){
+fn test_for() {
     let mut number = 1;
     // NOTE 截止 rustc 1.61.0 版本 do 任作为保留字，并未支持 do...while...
 
@@ -133,7 +133,6 @@ fn test_for(){
         println!("a[{i}]={}", a[i])
     }
 
-
     // NOTE loob 表达式属于值表达式
     let s = ['R', 'U', 'N', 'O', 'O', 'B'];
     let mut i = 0;
@@ -153,5 +152,4 @@ fn test_for(){
         }
     };
     println!(" \'O\' 的索引为 {}", location);
-
 }

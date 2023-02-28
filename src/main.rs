@@ -3,17 +3,17 @@ mod test_collections;
 mod test_func;
 mod test_ownership;
 
-mod test_struct;
-mod test_pointer;
 mod test_enum;
+mod test_pointer;
+mod test_struct;
 
 mod test_mod;
 
 mod advance_mods;
 mod test_error;
 mod test_generic;
-mod test_trait;
 mod test_lifecycle;
+mod test_trait;
 
 /**
  * 区块链
@@ -53,4 +53,3 @@ fn main() {
     let commented_clause = "aaa";
     println!("{}", commented_clause);
 }
-
